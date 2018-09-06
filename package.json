@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-data"
   ],
   "repository": "",
   "license": "MIT",
@@ -23,6 +24,8 @@
     "ember-cli-babel": "^6.6.0"
   },
   "devDependencies": {
+    "@ember-decorators/babel-transforms": "^2.0.2",
+    "@ember-decorators/data": "^2.3.1",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~3.3.0",
@@ -35,6 +38,7 @@
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^2.0.0",
+    "ember-data": "^3.4.0",
     "ember-disable-prototype-extensions": "^1.1.2",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.1.0",
