@@ -26,18 +26,18 @@ export default Helper.extend({
     this._cachedParams = params;
     this.installObserver(params);
 
-    return this.computeValue(params);
+    return this.computeBaseValue(params);
   },
 
-  computeValue(params) {
+  computeBaseValue(params) {
     let [record, relationshipName] = params;
     let rels = get(record.constructor, 'relationshipsByName');
     let meta = rels.get(relationshipName);
     let { kind } = meta;
     let reference = record[kind](relationshipName);
-    let value = reference.value();
+    let value = this.computeReturnValue(reference);
 
-    this._value = reference.value();
+    this._value = value;
 
     if (meta.options.async === false) {
       return value;
@@ -46,12 +46,16 @@ export default Helper.extend({
     this._load = guard(reference.load(), (v) => {
       this._load = null;
       if (this._value !== v) {
-        this._value = v;
+        this._value = this.computeReturnValue(reference);
         this.recompute();
       }
     });
 
     return value;
+  },
+
+  computeReturnValue(reference) {
+    return reference.value();
   },
 
   shouldRebuild(params) {
@@ -75,7 +79,7 @@ export default Helper.extend({
   },
 
   updateValue() {
-    this.computeValue(this._cachedParams);
+    this.computeBaseValue(this._cachedParams);
     this.recompute();
   },
 

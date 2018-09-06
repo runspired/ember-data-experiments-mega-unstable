@@ -1,1 +1,1 @@
-export { default, fetchData } from 'ember-data-experiments-mega-unstable/helpers/fetch-data';
+export { default} from 'ember-data-experiments-mega-unstable/helpers/fetch-data';
