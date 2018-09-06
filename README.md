@@ -32,6 +32,18 @@ Usage
 
 ### Template Helpers
 
+The helpers provide a consistent (never promise-proxy, always Record or RecordArray) experience regardless
+of whether `async` or `non-async` relationships are in use. They will trigger loads of relationships that
+have not been loaded yet.
+
+Further iterations will provide mechanisms for
+
+- queryParams and other request options
+- preventing fetch (enforce local data only)
+- loading state for documents
+- errors, meta, and links for documents
+- disallowing template based fetch (data must be already locally available)
+
 **fetch-data**
 
 ```hbs
@@ -49,14 +61,23 @@ Usage
 ```hbs
 {{#let (fetch-document record 'relationshipName') as |document|}}
   {{#if document.errors}}
-     ... do things with request errors ...
+     ... do things with request errors ... // not yet implemented
   {{else if document.isLoading}}
-     ... show spinner ...
+     ... show spinner ... // not yet implemented
   {{else}}
      ... do things with {{document.meta}} {{document.data}} {{document.links}} ...  
+     ... meta and links access is not yet implemented
   {{/if}}
 {{/let}}
 ```
+
+### Alternative Relationship Layer
+
+... coming soon ...
+
+### Alternative to `store.findAll`, `store.query` and `store.queryRecord`
+
+... coming soon ...
 
 Contributing
 ------------------------------------------------------------------------------
